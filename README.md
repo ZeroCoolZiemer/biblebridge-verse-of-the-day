@@ -1,43 +1,64 @@
-# BibleBridge – Verse of the Day (JavaScript)
+# Node.js Verse of the Day API Example (KJV JSON)
 
-A minimal, production-safe JavaScript reference demonstrating how to fetch a daily Scripture verse using the BibleBridge JSON API.
+This repository demonstrates how to build a **Verse of the Day feature in Node.js** using a **KJV Bible JSON API**.
 
-This example is designed to be read, copied, and embedded directly into an existing Node.js application or scheduled job.
+It shows how to programmatically fetch a single Scripture verse and embed it into:
 
-Canonical reference:  
+- Church websites  
+- Devotional applications  
+- Discord or Telegram bots  
+- Scheduled cron jobs  
+- Email automation systems  
+
+If you are looking for a **free KJV Bible API with JSON output**, this example provides a minimal, production-safe reference implementation.
+
+**Canonical documentation:**  
 https://holybible.dev/use-cases/verse-of-the-day
 
 ---
 
 ## Overview
 
-A “Verse of the Day” feature is commonly used in church websites, devotionals, notification systems, and messaging applications.
+A “Verse of the Day” feature is commonly implemented using one of two approaches:
 
-This example demonstrates a predictable and canonical approach to daily verse selection without relying on fully random Scripture output.
+1. Fully random verse selection  
+2. Curated verse selection  
 
-The focus is on **Scripture access and API behavior**, not frameworks, bots, or delivery channels.
+This example demonstrates a predictable, curated approach using a predefined verse set while retaining full canonical API access for advanced use cases.
+
+The focus here is on:
+
+- Clean API usage  
+- Stable JSON response handling  
+- Production-safe implementation  
+- No framework dependencies  
 
 ---
 
-## Why Curated Verses?
+## Why Not Fully Random Verses?
 
-Fully random verse selection can surface partial sentences, genealogies, or legal material that may be unsuitable for daily presentation.
+Fully random verse selection can surface:
 
-Most production systems therefore select from a curated or categorized verse set while retaining full canonical access for advanced use cases.
+- Partial sentences  
+- Genealogies  
+- Legal material  
+- Context-dependent passages  
+
+Most production devotional systems instead select from a curated or categorized verse set while still allowing full canonical Scripture access elsewhere.
 
 ---
 
 ## Example: Verse of the Day (Node.js)
 
 ```js
-const API_BASE = "https://holybible.dev/api";
+const API_BASE = "https://holybible.dev/api/scripture";
 const API_KEY = process.env.BIBLEBRIDGE_API_KEY;
 
-// Canonical verse whitelist (bookID 1–66)
+// Canonical verse whitelist
 const VERSES = [
   { bookID: 19, chapter: 23, verse: 1 },  // Psalm 23:1
   { bookID: 43, chapter: 3, verse: 16 },  // John 3:16
-  { bookID: 20, chapter: 3, verse: 5 }   // Proverbs 3:5
+  { bookID: 20, chapter: 3, verse: 5 }    // Proverbs 3:5
 ];
 
 function pickRandomVerse() {
@@ -75,7 +96,6 @@ async function run() {
 
 run();
 ```
-
 ## Example API Response
 ```json
 {
@@ -87,8 +107,10 @@ run();
     "name": "John"
   },
   "chapter": 3,
+  "range": null,
+  "results_count": 1,
   "data": {
     "verse": 16,
-    "text": "For God so loved the world..."
+    "text": "For God so loved the world, that he gave his only begotten Son, that whosoever believeth in him should not perish, but have everlasting life."
   }
 }
