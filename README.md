@@ -56,9 +56,9 @@ const API_KEY = process.env.BIBLEBRIDGE_API_KEY;
 
 // Canonical verse whitelist
 const VERSES = [
-  { bookID: 19, chapter: 23, verse: 1 },  // Psalm 23:1
-  { bookID: 43, chapter: 3, verse: 16 },  // John 3:16
-  { bookID: 20, chapter: 3, verse: 5 }    // Proverbs 3:5
+  { book_id: 19, chapter: 23, verse: 1 },  // Psalm 23:1
+  { book_id: 43, chapter: 3, verse: 16 },  // John 3:16
+  { book_id: 20, chapter: 3, verse: 5 }    // Proverbs 3:5
 ];
 
 function pickRandomVerse() {
@@ -68,7 +68,7 @@ function pickRandomVerse() {
 async function fetchVerse(ref) {
   const params = new URLSearchParams({
     key: API_KEY,
-    bookID: ref.bookID,
+    book_id: ref.book_id,
     chapter: ref.chapter,
     verse: ref.verse,
     version: "KJV"
